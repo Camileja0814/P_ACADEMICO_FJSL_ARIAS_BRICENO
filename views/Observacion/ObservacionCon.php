@@ -61,14 +61,21 @@ require_once "./core/configGeneral.php";
 
             <div class="titles">
                 <h1 class="tituloa ">Observación</h1>
-                <div class="form-group" id="botones">
-                    <!--Pará mostrar una línea horizontal en el documento-->
-                    <a href="?c=Observacion&a=nuevo" class="boton btn btn-info botones">Nueva Observación</a>
+                <?php
+                    if($sesion=='A' or $sesion=='P'){
+                        echo '
+                        <div class="form-group" id="botones">
+                            <!--Pará mostrar una línea horizontal en el documento-->
+                            <a href="?c=Observacion&a=nuevo" class="boton btn btn-info botones">Nueva Observación</a>
 
-                    <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
+                            <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
 
 
-                </div>
+                        </div>
+                        ';
+                    }else{echo ' ';}
+                ?>
+                
             </div>
 
             <div class="tablas">
@@ -80,8 +87,15 @@ require_once "./core/configGeneral.php";
                         <th data-field="fecha">Fecha</th>
                         <th data-field="tipo">Tipo</th>
                         <th data-field="descripcion">Descripción</th>
-                        <th data-field="editar"></th>
-                        <th data-field="eliminar"></th>
+                        <?php
+                            if($sesion=='A'){
+                                echo '
+                                <th data-field="editar"></th>
+                                <th data-field="eliminar"></th>
+                                ';
+                            }else{echo ' ';}
+                        ?>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -92,29 +106,36 @@ require_once "./core/configGeneral.php";
                         <td data-field="fecha"><?php echo $k->fecha_Observacion; ?></td>
                         <td data-field="tipo"><?php echo $k->tipo_Falta; ?></td>
                         <td data-field="descripcion"><?php echo $k->descripcion_Observacion; ?></td>
-                        <th data-field="editar">
-                            <div class="form-group" id="botones">
-                                <!--Pará mostrar una línea horizontal en el documento-->
-                                <a href="?c=Observacion&a=nuevo&id_Observacion=<?php echo $k->id_Observacion;?>"  class="fas fa-user-edit fa-lg " ></a>
+                        <?php
+                            if($sesion=='A'){
+                                echo '
+                                <th data-field="editar">
+                                    <div class="form-group" id="botones">
+                                        <!--Pará mostrar una línea horizontal en el documento-->
+                                        <a href="?c=Observacion&a=nuevo&id_Observacion=<?php echo $k->id_Observacion;?>"  class="fas fa-user-edit fa-lg " ></a>
 
-                                <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
-
-
-                            </div>
-                        </th>
-                        <th data-field="eliminar">
-                        <div class="form-group" id="botones">
-                                <!--Pará mostrar una línea horizontal en el documento-->
-                                <a onclick="javascript:return confirm('¿Desea eliminar el registro?');
-                                " href="?c=Observacion&a=g_eliminar_Observacion&id_Observacion=<?php echo $k->id_Observacion;?>"
-                                 class="fas fa-trash-alt fa-lg"></a>
-                               
-
-                                <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
+                                        <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
 
 
-                            </div>
-                        </th>
+                                    </div>
+                                </th>
+                                <th data-field="eliminar">
+                                <div class="form-group" id="botones">
+                                        <!--Pará mostrar una línea horizontal en el documento-->
+                                        <a onclick="javascript:return confirm(\'¿Desea eliminar el registro?\');
+                                        " href="?c=Observacion&a=g_eliminar_Observacion&id_Observacion=<?php echo $k->id_Observacion;?>"
+                                        class="fas fa-trash-alt fa-lg"></a>
+                                    
+
+                                        <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
+
+
+                                    </div>
+                                </th>
+                                ';
+                            }else{echo ' ';}
+                        ?>
+                        
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

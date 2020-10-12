@@ -1,5 +1,7 @@
 <?php 
 session_start();
+$nombre=$_SESSION['nombre'];
+$id=$_SESSION['id'];
 if (isset($_SESSION['Admin'])){
     $sesion = 'A';
 }elseif (isset($_SESSION['Profe'])){

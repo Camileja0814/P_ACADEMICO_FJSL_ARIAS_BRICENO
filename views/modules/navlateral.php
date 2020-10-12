@@ -6,8 +6,13 @@
 <nav id="sidebar" class="sidebar-wrapper">
   <div class="sidebar-content">
 	<div class="sidebar-brand">
-	  
-	 
+	<?php
+		if($sesion=='A'){echo '<i style="color:#ffffff" class="fas fa-user-tie fa-2x"></i>';}
+		else if($sesion=='P'){echo '<i style="color:#ffffff" class="fas fa-chalkboard-teacher fa-2x"></i>';}
+		else if($sesion=='E'){echo '<i style="color:#ffffff" class="fas fa-user-graduate fa-2x"></i>';}
+	?>
+	<a href="#" style="text-decoration:none; margin-left:15px"><?php echo $nombre;?></a>
+
 	</div>
 
 	<!-- sidebar-search  -->
@@ -29,31 +34,31 @@
 			 	if ($sesion == 'P') {
 					 echo "
 					 <li>
-				<a href='?c=Admin&a=Index'>Gestion Administrador</a>
+				<a href='?c=Admin&a=Index'>Gestión Administrador</a>
 			  </li>
 			  <li>
-				<a href='?c=Profesor&a=Index'>Gestion Profesor</a>
+				<a href='?c=Profesor&a=Index'>Gestión Profesor</a>
 			  </li>
 			  <li>
-				<a href='?c=Estudiante&a=Index'>Gestion Estudiante</a>
+				<a href='?c=Estudiante&a=Index'>Gestión Estudiante</a>
 			  </li>
 					 ";
 				 }else{}
 				 if ($sesion == 'E') {
 					echo "<li>
-					<a href='?c=Estudiante&a=Index'>Gestion Estudiante</a>
+					<a href='?c=Estudiante&a=nuevo&id_Usuario=$id'>Gestionar perfíl</a>
 				  </li>";
 				}else{}
 				if ($sesion == 'A') {
 					echo "
 					<li>
-				<a href='?c=Admin&a=Index'>Gestion Administrador</a>
+				<a href='?c=Admin&a=Index'>Gestión Administrador</a>
 			  </li>
 			  <li>
-				<a href='?c=Profesor&a=Index'>Gestion Profesor</a>
+				<a href='?c=Profesor&a=Index'>Gestión Profesor</a>
 			  </li>
 			  <li>
-				<a href='?c=Estudiante&a=Index'>Gestion Estudiante</a>
+				<a href='?c=Estudiante&a=Index'>Gestión Estudiante</a>
 			  </li>
 					<li>
 					<a href='?c=Usuario&a=Index'>Lista Usuarios</a>
@@ -88,67 +93,69 @@
 			<span>Calificaciones</span>
 		  </a>
 		</li>
-		<li class="sidebar-dropdown">
-		  <a href="#">
-		  <i class="fas fa-chalkboard"></i>
-			<span>Asignación Carga</span>
-		  </a>
-		  <div class="sidebar-submenu">
-			<ul>
-			  <li>
-				<a  href="?c=AsignacionCarga&a=Index">Asignación </a>
+		<?php
+			if($sesion=='A'){echo '		<li class="sidebar-dropdown">
+				<a href="#">
+				<i class="fas fa-chalkboard"></i>
+				  <span>Asignación Carga</span>
+				</a>
+				<div class="sidebar-submenu">
+				  <ul>
+					<li>
+					  <a  href="?c=AsignacionCarga&a=Index">Asignación </a>
+					</li>
+					<li>
+					  <a href="?c=Materia&a=Index">Materia</a>
+					</li>
+				  
+				  </ul>
+				</div>
 			  </li>
-			  <li>
-				<a href="?c=Materia&a=Index">Materia</a>
+			  
+	  
+			  <li class="sidebar-dropdown">
+				<a href="#">
+				<i class="fas fa-book"></i>
+				  <span>Seguimiento Curso</span>
+	  
+				</a>
+				<div class="sidebar-submenu">
+				  <ul>
+					<li>
+					  <a  href="?c=Curso&a=Index">Curso</a>
+					</li>
+					<li>
+					  <a href="?c=SeguimientoCurso&a=Index">Seguimiento</a>
+					</li>
+					<li>
+					  <a href="?c=Salon&a=Index">Salon</a>
+					</li>
+				  </ul>
+				</div>
 			  </li>
-			
-			</ul>
-		  </div>
-		</li>
-		
-
-		<li class="sidebar-dropdown">
-		  <a href="#">
-		  <i class="fas fa-book"></i>
-			<span>Seguimiento Curso</span>
-
-		  </a>
-		  <div class="sidebar-submenu">
-			<ul>
-			  <li>
-				<a  href="?c=Curso&a=Index">Curso</a>
-			  </li>
-			  <li>
-				<a href="?c=SeguimientoCurso&a=Index">Seguimiento</a>
-			  </li>
-			  <li>
-				<a href="?c=Salon&a=Index">Salon</a>
-			  </li>
-			</ul>
-		  </div>
-		</li>
-		<li class="sidebar-dropdown">
-		  <a href="#">
-			<i class="fa fa-user-plus"></i>
-			<span>Otros</span>
-
-		  </a>
-		  <div class="sidebar-submenu">
-			<ul>
-			
-			  <li>
-				<a href="?c=Cargo&a=Index">Cargo</a>
-			  </li>
-			  <li>
-				<a href="?c=Especialidad&a=Index">Especialidad</a>
-			  </li>
-			  <li>
-				<a href="?c=TipoUsuario&a=Index">Tipo Usuario</a>
-			  </li>
-
-			</ul>
-		  </div>
-		</li>
+			  <li class="sidebar-dropdown">
+				<a href="#">
+				  <i class="fa fa-user-plus"></i>
+				  <span>Otros</span>
+	  
+				</a>
+				<div class="sidebar-submenu">
+				  <ul>
+				  
+					<li>
+					  <a href="?c=Cargo&a=Index">Cargo</a>
+					</li>
+					<li>
+					  <a href="?c=Especialidad&a=Index">Especialidad</a>
+					</li>
+					<li>
+					  <a href="?c=TipoUsuario&a=Index">Tipo Usuario</a>
+					</li>
+	  
+				  </ul>
+				</div>
+			  </li>';}else{echo ' ';}
+		?>
 		
 	  </ul>
 	</div>

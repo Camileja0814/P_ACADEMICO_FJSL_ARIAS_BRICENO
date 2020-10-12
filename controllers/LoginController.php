@@ -16,10 +16,12 @@ class LoginController{
     public function Iniciar(){
         
         $alm = new loginModel();
+        $datos = new loginModel();
         $alm->user_Usuario =$_REQUEST['user_Usuario'];
         $alm->password_Usuario =$_REQUEST['password_Usuario'];
         $alm->id_tipoUsuario_FK =$_REQUEST['id_tipoUsuario_FK'];
-        $inicio=$this->mode->Iniciar_Sesion($alm);
+        $datos=$this->mode->Obtener($alm);
+        $inicio=$this->mode->Iniciar_Sesion($alm,$datos);
 
     }
     

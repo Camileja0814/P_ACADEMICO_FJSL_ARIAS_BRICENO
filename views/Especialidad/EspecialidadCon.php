@@ -75,7 +75,7 @@ require_once "./core/configGeneral.php";
                 data-show-refresh="false"
                 data-show-columns="true"
                 data-buttons-toolbar=".buttons-toolbar">
-                <thead">
+                <thead>
                     <tr>
                         <th data-field="ID">ID</th>
                         <th data-field="especialidad">Especialidad</th>

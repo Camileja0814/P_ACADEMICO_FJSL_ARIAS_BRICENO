@@ -66,7 +66,7 @@ require_once "./core/configGeneral.php";
             <div class="tablas">
             <table id="table" data-toggle="table" data-height="auto" data-search="true" data-show-refresh="false"
                 data-show-columns="true" data-buttons-toolbar=".buttons-toolbar">
-                <thead">
+                <thead>
                     <tr>
                         <th data-field="ID">ID</th>
                         <th data-field="nombre">Nombre</th>

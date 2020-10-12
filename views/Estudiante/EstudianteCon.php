@@ -59,20 +59,26 @@ require_once "./core/configGeneral.php";
 
             <div class="titles">
                 <h1 class="tituloa ">Estudiantes</h1>
-                <div class="form-group" id="botones">
-                    <!--Pará mostrar una línea horizontal en el documento-->
-                    <a href="?c=Estudiante&a=nuevo" class="boton btn btn-info botones">Nuevo Estudiante</a>
-
-                    <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
-
-
-                </div>
+                <?php
+                    if($sesion=='A'){
+                        echo '
+                        <div class="form-group" id="botones">
+                        <!--Pará mostrar una línea horizontal en el documento-->
+                        <a href="?c=Estudiante&a=nuevo" class="boton btn btn-info botones">Nuevo Estudiante</a>
+    
+                        <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
+    
+    
+                    </div>
+                        ';
+                    }
+                ?>
             </div>
 
             <div class="tablas">
                 <table id="table" data-toggle="table" data-height="auto" data-search="true" data-show-refresh="false"
                     data-show-columns="true" data-buttons-toolbar=".buttons-toolbar">
-                    <thead">
+                    <thead>
                         <tr>
                             <th data-field="ID">ID</th>
                             <th data-field="nombre">Nombre</th>
@@ -80,7 +86,14 @@ require_once "./core/configGeneral.php";
                             <th data-field="tipoDoc">Tipo Documento</th>
                             <th data-field="Doc">Documento</th>
                             <th data-field="editar"></th>
-                            <th data-field="eliminar"></th>
+                            <?php
+                                if($sesion=='A'){
+                                    echo '
+                                    <th data-field="eliminar"></th>
+                                    ';
+                                }
+                            ?>
+                            
                         </tr>
                         </thead>
                         <tbody>
@@ -103,19 +116,26 @@ require_once "./core/configGeneral.php";
 
                                     </div>
                                 </th>
-                                <th data-field="eliminar">
-                                    <div class="form-group" id="botones">
-                                        <!--Pará mostrar una línea horizontal en el documento-->
-                                        <a onclick="javascript:return confirm('¿Desea eliminar el registro?');
-                                " href="?c=Estudiante&a=g_eliminar_Estudiante&id_Usuario=<?php echo $k->id_Usuario;?>"
-                                            class="fas fa-trash-alt fa-lg"></a>
-
-
-                                        <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
-
-
-                                    </div>
-                                </th>
+                                <?php
+                                    if($sesion=='A'){
+                                        echo '
+                                        <th data-field="eliminar">
+                                        <div class="form-group" id="botones">
+                                            <!--Pará mostrar una línea horizontal en el documento-->
+                                            <a onclick="javascript:return confirm(\'¿Desea eliminar el registro?\');
+                                    " href="?c=Estudiante&a=g_eliminar_Estudiante&id_Usuario=<?php echo $k->id_Usuario;?>"
+                                                class="fas fa-trash-alt fa-lg"></a>
+    
+    
+                                            <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
+    
+    
+                                        </div>
+                                    </th>
+                                        ';
+                                    }
+                                ?>
+                                
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

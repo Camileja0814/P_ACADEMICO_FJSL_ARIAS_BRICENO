@@ -58,13 +58,7 @@ require_once "./core/configGeneral.php";
 
             <div class="titles">
                 <h1 class="tituloa ">Administradores</h1>
-                <?php 
-			 	if ($sesion == 'P') {
-					 echo "";
-				 }else{}
-				 if ($sesion == 'E') {
-					echo "";
-				}else{}
+                <?php
 				if ($sesion == 'A') {
 					echo "<div class='form-group' id='botones'>
                     
@@ -72,7 +66,7 @@ require_once "./core/configGeneral.php";
 
 
                 </div>";
-				}else{}
+				}else{echo ' ';}
 
 			?>
 
@@ -81,7 +75,7 @@ require_once "./core/configGeneral.php";
             <div class="tablas">
                 <table id="table" data-toggle="table" data-height="auto" data-search="true" data-show-refresh="false"
                     data-show-columns="true" data-buttons-toolbar=".buttons-toolbar">
-                    <thead">
+                    <thead>
                         <tr>
                             <th data-field="ID">ID</th>
                             <th data-field="nombre">Nombre</th>
@@ -90,15 +84,10 @@ require_once "./core/configGeneral.php";
                             <th data-field="Doc">Documento</th>
                             <th data-field="editar"></th>
                             <?php 
-                                if ($sesion == 'P') {
-                                    echo "";
-                                }else{}
-                                if ($sesion == 'E') {
-                                    echo "";
-                                }else{}
+                                
                                 if ($sesion == 'A') {
                                     echo "<th data-field=\"eliminar\"></th>";
-                                }else{}
+                                }else{echo ' ';}
 
                             ?>
 
@@ -124,27 +113,18 @@ require_once "./core/configGeneral.php";
                                 </div>
                             </th>
                             <?php 
-                                if ($sesion == 'P') {
-                                    echo "";
-                                }else{}
-                                if ($sesion == 'E') {
-                                    echo "";
-                                }else{}
+                                
                                 if ($sesion == 'A') {
                                     echo "<th data-field=\"eliminar\">
-                                    <div class=\"form-group\" id=\"botones\">
-                                            
-                                            <a onclick=\"javascript:return confirm('¿Desea eliminar el registro?');
-                                            \" href=\"?c=Admin&a=g_eliminar_Admin&id_Usuario= $k->id_Usuario;?>\"
-                                            class=\"fas fa-trash-alt fa-lg\"></a>
+                                    <div class=\"form-group\" id=\"botones\">                        
+                                        <a onclick=\"javascript:return confirm('¿Desea eliminar el registro?');
+                                        \" href=\"?c=Admin&a=g_eliminar_Admin&id_Usuario= $k->id_Usuario;?>\"
+                                        class=\"fas fa-trash-alt fa-lg\"></a>
+                                    </div>
+                                    </th>";
+                                    }else{echo ' ';}
 
-
-
-                            </div>
-                            </th>";
-                            }else{}
-
-                            ?>
+                                    ?>
 
             </tr>
             <?php endforeach; ?>

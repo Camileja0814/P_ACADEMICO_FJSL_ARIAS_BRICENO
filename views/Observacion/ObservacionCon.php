@@ -84,9 +84,12 @@ require_once "./core/configGeneral.php";
                 <thead>
                     <tr>
                         <th data-field="ID">ID</th>
+                        <th data-field="Nombre">Nombre</th>
+                        <th data-field="Apellido">Apellido</th>
                         <th data-field="fecha">Fecha</th>
                         <th data-field="tipo">Tipo</th>
                         <th data-field="descripcion">Descripción</th>
+                        <th data-field="Descargos">Descargos</th>
                         <?php
                             if($sesion=='A'){
                                 echo '
@@ -103,16 +106,19 @@ require_once "./core/configGeneral.php";
                     <?php foreach ($this->mode->listar_Observacion() as $k ) : ?>
                     <tr>
                         <th data-field="ID" scope="row"><?php echo $k->id_Observacion; ?></th>
+                        <td data-field="Nombre"><?php echo $k->nombre_Usuario; ?></td>
+                        <td data-field="Apellido"><?php echo $k->apellido_Usuario; ?></td>
                         <td data-field="fecha"><?php echo $k->fecha_Observacion; ?></td>
                         <td data-field="tipo"><?php echo $k->tipo_Falta; ?></td>
                         <td data-field="descripcion"><?php echo $k->descripcion_Observacion; ?></td>
+                        <td data-field="Descargos"><?php echo $k->descargos_Usuario; ?></td>
                         <?php
                             if($sesion=='A'){
                                 echo '
                                 <th data-field="editar">
                                     <div class="form-group" id="botones">
                                         <!--Pará mostrar una línea horizontal en el documento-->
-                                        <a href="?c=Observacion&a=nuevo&id_Observacion=<?php echo $k->id_Observacion;?>"  class="fas fa-user-edit fa-lg " ></a>
+                                        <a href="?c=Observacion&a=nuevo&id_Observacion='. $k->id_Observacion.' "  class="fas fa-user-edit fa-lg " ></a>
 
                                         <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
 
@@ -123,7 +129,7 @@ require_once "./core/configGeneral.php";
                                 <div class="form-group" id="botones">
                                         <!--Pará mostrar una línea horizontal en el documento-->
                                         <a onclick="javascript:return confirm(\'¿Desea eliminar el registro?\');
-                                        " href="?c=Observacion&a=g_eliminar_Observacion&id_Observacion=<?php echo $k->id_Observacion;?>"
+                                        " href="?c=Observacion&a=g_eliminar_Observacion&id_Observacion='.$k->id_Observacion.' "
                                         class="fas fa-trash-alt fa-lg"></a>
                                     
 

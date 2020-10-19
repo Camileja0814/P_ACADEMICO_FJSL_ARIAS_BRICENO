@@ -28,11 +28,11 @@ class CalificacionController{
         $alm->notaPeriodo1_Calificacion =$_REQUEST['notaPeriodo1_Calificacion'];
         $alm->notaPeriodo2_Calificacion =$_REQUEST['notaPeriodo2_Calificacion'];
         $alm->notaPeriodo3_Calificacion =$_REQUEST['notaPeriodo3_Calificacion'];
-        $alm->notaFinal1_Calificacion =$_REQUEST['notaFinal1_Calificacion'];
         $alm->fechaRegistro_Calificacion =$_REQUEST['fechaRegistro_Calificacion'];
-        $alm->id_Usuario_FKFK =$_REQUEST['id_Usuario_FKFK'];
+        $alm->id_Asignacion_FK = $_REQUEST['id_Asignacion_FK'];
+        $alm->id_Calificacion =$_REQUEST['id_Calificacion'];
         $alm->id_Calificacion > 0 
-            ?$this->mode->actualizar_Calificacion($alm) : $this->mode->nuevo_calificacion($alm);
+            ?$this->mode->actualizar_Calificacion($alm) : $this->mode->nuevo_Calificacion($alm);
         
         
         

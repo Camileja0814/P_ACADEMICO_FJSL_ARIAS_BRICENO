@@ -86,22 +86,22 @@ require_once "./core/configGeneral.php";
                    
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Usuario</label>
+                            <label class="input-group-text" for="inputGroupSelect01">Materia / Estudiante / Curso</label>
                         </div>
                         <select
                             class="custom-select selects"
                             id="inputGroupSelect01"
                             style="background-color: #ffffff00;"
-                            name="id_Usuario_FKFK">
-                            <option selected="selected" value="<?php echo $alm->id_Usuario_FKFK; ?>">
-                                <?php echo $alm->id_Calificacion != null ? ($alm->nombre_Usuario.' '.$alm->apellido_Usuario) : '--Seleccione el Usuario--'; ?>
+                            name="id_Asignacion_FK">
+                            <option selected="selected" value="<?php echo $alm->id_Asignacion; ?>">
+                                <?php echo $alm->id_Calificacion != null ? ($alm->nombre_Usuario.'  '.$alm->apellido_Usuario.' - '.$alm->nombre_Materia.' - '.$alm->codigo_Curso) : '--Seleccione el Usuario / Materia /Curso--'; ?>
                             </option>
-
                             <?php foreach ($this->mode->listar_Usuario() as $k ) : ?>
-                            <option value="<?php echo $k->id_Usuario; ?>"><?php echo $k->nombre_Usuario.' '.$k->apellido_Usuario; ?></option>
+                            <option value="<?php echo $k->id_Asignacion ; ?>"><?php echo $k->nombre_Usuario.'  '.$k->apellido_Usuario.' - '.$k->nombre_Materia.' - '.$k->codigo_Curso; ?></option>
 
                             <?php endforeach; ?>
 
+                           
                         </select>
                     </div>
                    
@@ -159,23 +159,7 @@ require_once "./core/configGeneral.php";
                         <!--Pará crear un campo de texto -->
                     </div>
 
-                    <div class="form-group">
-                        <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
-                        <label>Nota Final</label>
-                        <!--Pará dar nombre al campo de texto -->
-
-                        <input
-                        value="<?php echo $alm->notaFinal1_Calificacion; ?>"
-                            name="notaFinal1_Calificacion"
-                            class="form-control"
-                            type="text"
-                            placeholder="Ingrese Nota de 1 a 5"
-                            required="required"
-                            
-                            pattern="[0-9]{1,5}"
-                            title="ingrese solo numeros"/>
-                        <!--Pará crear un campo de texto -->
-                    </div>
+                  
                     <div class="form-group">
                         <label id="Label1" runat="server" text="Label">
                             Fecha Asignación:</label>

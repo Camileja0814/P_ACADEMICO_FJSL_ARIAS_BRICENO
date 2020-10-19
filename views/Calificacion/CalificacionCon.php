@@ -77,13 +77,14 @@ require_once "./core/configGeneral.php";
                 <thead>
                     <tr>
                         <th data-field="ID">ID</th>
+                        <th data-field="nombre">Nombre</th>
                         <th data-field="nota1">Nota Periodo 1</th>
                         <th data-field="nota2">Nota Periodo 2</th>
                         <th data-field="nota3">Nota Periodo 3</th>
-                        <th data-field="notafinal">Nota Final</th>
+                        <th data-field="notafinal2">Nota Final</th>
                         <th data-field="fecha">Fecha</th>
-                        <th data-field="nombre_Usuario">Nombre</th>
-                        <th data-field="apellido_Usuario">Apellido</th>
+                        <th data-field="curso">Curso</th>
+                        <th data-field="materia">Materia</th>
                         
                         <th data-field="editar"></th>
                         <th data-field="eliminar"></th>
@@ -94,13 +95,15 @@ require_once "./core/configGeneral.php";
                     <?php foreach ($this->mode->listar_Calificacion() as $k ) : ?>
                     <tr>
                         <th data-field="ID" scope="row"><?php echo $k->id_Calificacion; ?></th>
+                        <th data-field="nombre"><?php echo $k->nombre_Usuario.' '.$k->apellido_Usuario; ?></th>
                         <td data-field="nota1"><?php echo $k->notaPeriodo1_Calificacion; ?></td>
                         <td data-field="nota2"><?php echo $k->notaPeriodo2_Calificacion; ?></td>
                         <td data-field="nota3"><?php echo $k->notaPeriodo3_Calificacion; ?></td>
-                        <td data-field="notafinal"><?php echo $k->notaFinal1_Calificacion; ?></td>
+                        <td data-field="notafinal2"><?php echo ($k->notaPeriodo1_Calificacion+$k->notaPeriodo2_Calificacion+$k->notaPeriodo3_Calificacion)/3; ?></td>
                         <td data-field="fecha"><?php echo $k->fechaRegistro_Calificacion; ?></td>
-                        <td data-field="nombre_Usuario"><?php echo $k->nombre_Usuario; ?></td>
-                        <td data-field="apellido_Usuario"><?php echo $k->apellido_Usuario; ?></td>
+                        
+                        <td data-field="curso"><?php echo $k->codigo_Curso; ?></td>
+                        <td data-field="materia"><?php echo $k->nombre_Materia; ?></td>
                         <th data-field="editar">
                             <div class="form-group" id="botones">
                                 <!--Pará mostrar una línea horizontal en el documento-->

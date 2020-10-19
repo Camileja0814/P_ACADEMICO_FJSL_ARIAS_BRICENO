@@ -79,7 +79,23 @@ require_once "./core/configGeneral.php";
 
                     <!--para crear contenedor-->
                     <input type="hidden" name="id_Observacion" value="<?php echo $alm->id_Observacion; ?>"/>
+                    <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Usuario</label>
+                            </div>
+                            <select  class="custom-select selects" id="inputGroupSelect01"
+                                style="background-color: #ffffff00;" name="id_Usuario_KF">
+                                <option selected value="<?php echo $alm->id_Usuario_FK; ?>">
+                                <?php echo $alm->id_Observacion != null ? ($alm->nombre_Usuario.' '.$alm->apellido_Usuario) : '--Seleccione el Usuario--'; ?>
+                            </option>
+                                
+                                <?php foreach ($this->mode->listar_Usuario() as $k ) : ?>
+                                    <option value="<?php echo $k->id_Usuario; ?>"><?php echo $k->nombre_Usuario.' '.$k->apellido_Usuario; ?></option>
+                        
+                                <?php endforeach; ?>
 
+                            </select>
+                        </div>
                     <div class="form-group">
                         <!--Pará crear un contenedor adaptable con los estilos de bootstrap-->
 
@@ -117,7 +133,7 @@ require_once "./core/configGeneral.php";
                                             }elseif($alm->tipo_Falta == "Gravisima"){
                                                  echo "Gravisima";
                                                 }
-                                }
+                                }else{echo "--Seleccione el tipo de la Falta--";}   
                                     
                                 
                                  ?>
@@ -138,6 +154,17 @@ require_once "./core/configGeneral.php";
                             required="required"
                             placeholder="Ingrese descripción"
                             rows="3"><?php echo $alm->descripcion_Observacion; ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Descargos Usuarios</label>
+                        <textarea
+                        
+                            name="descargos_Usuario"
+                            class="form-control"
+                            id="exampleFormControlTextarea1"
+                            required="required"
+                            placeholder="Ingrese descripción"
+                            rows="3"><?php echo $alm->descargos_Usuario; ?></textarea>
                     </div>
 
                     <div class="form-group" id="botones">

@@ -10,8 +10,13 @@
 		if($sesion=='A'){echo '<i style="color:#ffffff" class="fas fa-user-tie fa-2x"></i>';}
 		else if($sesion=='P'){echo '<i style="color:#ffffff" class="fas fa-chalkboard-teacher fa-2x"></i>';}
 		else if($sesion=='E'){echo '<i style="color:#ffffff" class="fas fa-user-graduate fa-2x"></i>';}
+
+		if($sesion=='A'){echo '<a href="#" style="text-decoration:none; margin-left:15px">ADMINISTRADOR | '. $nombre.' </a>';}
+		else if($sesion=='P'){echo '<a href="#" style="text-decoration:none; margin-left:15px">PROFESOR | '. $nombre .'</a>';}
+		else if($sesion=='E'){echo '<a href="#" style="text-decoration:none; margin-left:15px">ESTUDIANTE | '. $nombre.' </a>';}
 	?>
-	<a href="#" style="text-decoration:none; margin-left:15px"><?php echo $nombre;?></a>
+	
+	
 
 	</div>
 

@@ -8,7 +8,6 @@ class CalificacionModel{
     public $notaPeriodo1_Calificacion;
     public $notaPeriodo2_Calificacion;
     public $notaPeriodo3_Calificacion;
-    public $notaFinal1_Calificacion;
     public $fechaRegistro_Calificacion;
     public $id_Usuario_FKFK;
 
@@ -27,14 +26,23 @@ class CalificacionModel{
             $query= "SELECT id_Calificacion,
             notaPeriodo1_Calificacion,
             notaPeriodo2_Calificacion,
-            id_Usuario_FKFK,
+            notaPeriodo3_Calificacion,
+            fechaRegistro_Calificacion,
             nombre_Usuario,
             apellido_Usuario,
-            notaPeriodo3_Calificacion,
-            notaFinal1_Calificacion,
-            fechaRegistro_Calificacion
+            id_Asignacion_FK,
+            id_Asignacion,
+            id_Materia_FK,
+            nombre_Materia,
+            id_Usuario_KFFK,
+            id_Curso_FKF,
+            codigo_Curso
             from CALIFICACION
-            inner join USUARIO on Usuario.id_Usuario=CALIFICACION.id_Usuario_FKFK";
+            INNER JOIN ASIGNACIONCARGA ON  CALIFICACION.id_Asignacion_FK=ASIGNACIONCARGA.id_Asignacion
+            INNER JOIN MATERIA ON MATERIA.id_Materia=ASIGNACIONCARGA.id_Materia_FK
+            INNER JOIN USUARIO ON USUARIO.id_Usuario=ASIGNACIONCARGA.id_Usuario_KFFK
+            INNER JOIN CURSO ON CURSO.id_Curso=ASIGNACIONCARGA.id_Curso_FKF;
+            ";
             $stm = $this->CNX->prepare($query);
             $stm->execute();
             return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -46,7 +54,19 @@ class CalificacionModel{
     
     public function listar_Usuario(){
         try {
-            $query= "SELECT * from Usuario where id_tipoUsuario_FK=3";
+            $query= "SELECT 
+            nombre_Usuario,
+            apellido_Usuario,
+            id_Asignacion,
+            id_Materia_FK,
+            nombre_Materia,
+            id_Usuario_KFFK,
+            id_Curso_FKF,
+            codigo_Curso
+            from ASIGNACIONCARGA
+            INNER JOIN MATERIA ON MATERIA.id_Materia=ASIGNACIONCARGA.id_Materia_FK
+            INNER JOIN USUARIO ON USUARIO.id_Usuario=ASIGNACIONCARGA.id_Usuario_KFFK
+            INNER JOIN CURSO ON CURSO.id_Curso=ASIGNACIONCARGA.id_Curso_FKF;";
             $stm = $this->CNX->prepare($query);
             $stm->execute();
             return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -59,17 +79,12 @@ class CalificacionModel{
 	{
 		try 
 		{
-            $query= "SELECT id_Calificacion,
-            notaPeriodo1_Calificacion,
-            notaPeriodo2_Calificacion,
-            id_Usuario_FKFK,
-            nombre_Usuario,
-            apellido_Usuario,
-            notaPeriodo3_Calificacion,
-            notaFinal1_Calificacion,
-            fechaRegistro_Calificacion
+            $query= "SELECT *
             from CALIFICACION
-            inner join USUARIO on Usuario.id_Usuario=CALIFICACION.id_Usuario_FKFK
+            INNER JOIN ASIGNACIONCARGA ON  CALIFICACION.id_Asignacion_FK=ASIGNACIONCARGA.id_Asignacion
+            INNER JOIN MATERIA ON MATERIA.id_Materia=ASIGNACIONCARGA.id_Materia_FK
+            INNER JOIN USUARIO ON USUARIO.id_Usuario=ASIGNACIONCARGA.id_Usuario_KFFK
+            INNER JOIN CURSO ON CURSO.id_Curso=ASIGNACIONCARGA.id_Curso_FKF
             WHERE id_Calificacion=?";
             $stm = $this->CNX->prepare($query);
 			$stm->execute(array($id_Calificacion));
@@ -82,15 +97,14 @@ class CalificacionModel{
 
     public function nuevo_Calificacion(CalificacionModel $data){
         try {
-            $query= "insert into Calificacion values ('',?,?,?,?,?,?)";
+            $query= "insert into Calificacion values ('',?,?,?,?,?)";
             $stm = $this->CNX->prepare($query);
             $stm->execute(array(
                 $data->notaPeriodo1_Calificacion,
                 $data->notaPeriodo2_Calificacion,
                 $data->notaPeriodo3_Calificacion,
-                $data->notaFinal1_Calificacion,
                 $data->fechaRegistro_Calificacion,
-                $data->id_Usuario_FKFK));
+                $data->id_Asignacion_FK));
             //return $stm->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e){
             die($e ->getMessage());
@@ -103,17 +117,15 @@ class CalificacionModel{
                         notaPeriodo1_Calificacion=?,
                         notaPeriodo2_Calificacion=?,
                         notaPeriodo3_Calificacion=?,
-                        notaFinal1_Calificacion=?,
                         fechaRegistro_Calificacion=?,
-                        id_Usuario_FKFK=?
+                        id_Asignacion_FK=?
                     where id_Calificacion=?";
             $stm = $this->CNX->prepare($query);
             $stm->execute(array($data->notaPeriodo1_Calificacion,
                                 $data->notaPeriodo2_Calificacion,
                                 $data->notaPeriodo3_Calificacion,
-                                $data->notaFinal1_Calificacion,
                                 $data->fechaRegistro_Calificacion,
-                                $data->id_Usuario_FKFK,
+                                $data->id_Asignacion_FK,
                                 $data->id_Calificacion
                                 ));
             //return $stm->fetchAll(PDO::FETCH_OBJ);
